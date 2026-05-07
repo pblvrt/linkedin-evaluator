@@ -6,17 +6,28 @@ The framework scores the seven things that decide whether a profile attracts hig
 
 ## Step 1 — Get the profile
 
-The user pasted this prompt into Claude **with their profile data already inline as a JSON block** (captured by a bookmarklet running inside their own logged-in LinkedIn session). Use that data — do not try to fetch LinkedIn yourself; the public site blocks automated requests and you'll get a 999/404.
+The user pasted a LinkedIn profile URL alongside this prompt. They are running inside Claude Code with the **chrome-devtools MCP** installed and Chrome already open + logged into LinkedIn. Drive their browser to read the profile.
 
-The JSON block contains:
-- `name`, `headline`, `location`
-- `photo` and `banner` — each with `present` boolean and a `note`. Use the note as written when scoring visuals; do not invent visual details.
-- `sections` — an object keyed by LinkedIn section heading (`About`, `Featured`, `Experience`, `Skills`, `Education`, `Recommendations`, `Activity`, etc.) with the rendered text of each.
-- `sectionsFoundOnProfile` — the list of section names actually present. **If a section is missing from this list, treat it as `not visible / empty` and score accordingly** (e.g. no Featured = 0/10).
+1. `mcp__chrome-devtools__list_pages` — see what's already open.
+2. `mcp__chrome-devtools__new_page` with the user's profile URL (or `navigate_page` to it if a tab is already open).
+3. Take a `take_snapshot` of the page.
+4. The top of the profile loads first; the rest is lazy. Scroll the page in steps using `evaluate_script`:
+   ```js
+   for (let i = 1; i <= 8; i++) { window.scrollTo(0, document.body.scrollHeight * i / 8); await new Promise(r => setTimeout(r, 400)); }
+   window.scrollTo(0, 0);
+   ```
+5. Click any "Show all" / "see more" expanders inside About, Experience, Skills via `evaluate_script`:
+   ```js
+   document.querySelectorAll('button, a span').forEach(el => { if (/^(see more|show all|see all( \d+)?( experience| skills| education| posts| recommendations)?|… see more)$/i.test((el.innerText||'').trim())) (el.closest('button')||el.closest('a'))?.click(); });
+   ```
+   Wait ~1s for re-render.
+6. Take a fresh `take_snapshot`. Capture: name (full), headline, location, About text, Featured items, every Experience entry (title, company, dates, full description), top skills, recommendations count + samples, recent activity (last 5+ posts with dates and engagement).
+7. For Activity cadence: `navigate_page` to `<their-url>/recent-activity/all/` and snapshot — or scroll the Activity section on the main profile page.
+8. For visuals: snapshot describes images via alt-text and surrounding context. Profile photo present? Banner — does it appear to be a custom image or LinkedIn default? If unclear, take a `take_screenshot` and assess.
 
-If the JSON block is **not** present (user pasted only a URL): tell them *"This audit needs the bookmarklet to capture your profile first — go to https://pblvrt.github.io/linkedin-evaluator, drag the bookmark to your bookmarks bar, click it on your LinkedIn profile, then paste the result into this chat."* Then stop.
+If chrome-devtools tools aren't available, tell the user: *"This audit needs the chrome-devtools MCP. Install with `claude mcp add chrome-devtools npx chrome-devtools-mcp@latest` and restart Claude Code."* Then stop.
 
-Do **not** invent content. Quote only what the JSON contains. If a section is empty or missing, mark it `not visible` in the scorecard and lower that section's score — an empty Featured section is itself a finding.
+Do **not** invent content. Quote only what's actually on the page. If a section is empty or missing, mark it `not visible` in the scorecard and lower that section's score — an empty Featured section is itself a finding.
 
 ## Step 2 — Apply the rubric
 
