@@ -43,4 +43,4 @@ The audit prompt is fetched once via web. Your profile is read by Claude inside 
 
 ## Built by
 
-[Pablo Voorvaart](https://linkedin.com/in/pablovoorvaart) — building [Scout](https://github.com/pblvrt), automated LinkedIn lead gen for high-ticket service businesses.
+[Pablo](https://linkedin.com/in/pablo-v-b64b92169) — building [Scout](https://github.com/pblvrt), automated LinkedIn lead gen for high-ticket service businesses.

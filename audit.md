@@ -197,4 +197,4 @@ When they answer, regenerate **only** the Rewrites section — don't re-score.
 
 ---
 
-*Audit prompt v1 — built by [Pablo Voorvaart](https://linkedin.com/in/pablovoorvaart). If this was useful, the same engine runs [Scout](https://github.com/pblvrt) — automated LinkedIn lead gen for service businesses.*
+*Audit prompt v1 — built by [Pablo](https://linkedin.com/in/pablo-v-b64b92169). If this was useful, the same engine runs [Scout](https://github.com/pblvrt) — automated LinkedIn lead gen for service businesses.*

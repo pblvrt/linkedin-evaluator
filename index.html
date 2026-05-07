@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free LinkedIn Profile Audit — runs in your own Claude Code</title>
-<meta name="description" content="A senior-positioning-consultant-grade audit of your LinkedIn profile, scored across the 7 pillars that decide whether visitors become clients. Runs in Claude Code, no signup.">
-<meta property="og:title" content="The LinkedIn audit that tells you what to delete">
-<meta property="og:description" content="Score your profile across the 7 pillars that turn visitors into clients. Concrete rewrites, no fluff. Runs in Claude Code.">
+<title>Your LinkedIn is leaking deals. Here's the audit that fixes it.</title>
+<meta name="description" content="A no-bullshit LinkedIn audit for sales people who'd rather be selling. Quotes your actual copy, tells you what to delete, and rewrites the parts that aren't working.">
+<meta property="og:title" content="Your LinkedIn is leaking deals.">
+<meta property="og:description" content="A no-bullshit LinkedIn audit. Quotes your copy. Tells you what to delete. Rewrites what's broken. Free.">
 <style>
   :root {
     --ink: #0b0d12;
@@ -132,45 +132,46 @@
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow">Free · No signup · Runs in Claude Code</p>
-    <h1>The LinkedIn audit that <em>tells you what to delete.</em></h1>
-    <p class="lede">A senior-positioning-consultant-grade audit, scored across the 7 things that decide whether profile visitors become clients. Real rewrites, not "be authentic."</p>
+    <p class="eyebrow">Free · For sales people who'd rather be selling</p>
+    <h1>Your LinkedIn is <em>leaking deals.</em> Here's what to delete.</h1>
+    <p class="lede">A blunt audit of your profile that quotes your actual copy, scores it across the 7 things that decide whether visitors DM you or scroll past, and rewrites the parts that aren't working. Takes ~2 minutes once you're set up. No "be authentic" energy.</p>
   </header>
 
-  <h2><span class="num">01</span>One-time setup</h2>
-  <p>Install the <code>chrome-devtools</code> MCP in Claude Code. Then make sure Chrome is open and you're logged into LinkedIn.</p>
+  <h2><span class="num">01</span>Set up Claude Code (one-time)</h2>
+  <p>Claude Code is the AI tool that can use your computer for you. You'll use it for way more than this audit — but if you don't have it yet, grab it here: <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a>. Takes 2 minutes.</p>
+  <p>Then run this command once to let it talk to your browser:</p>
   <div class="code-block" data-copy="install"><button class="copy" data-target="install">Copy</button>claude mcp add chrome-devtools npx chrome-devtools-mcp@latest</div>
-  <p class="step-hint">Don't have Claude Code? Install it from <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a>.</p>
+  <p class="step-hint">Open Chrome, log into LinkedIn like you normally do. That's the setup. You'll never do this part again.</p>
 
   <h2><span class="num">02</span>Run the audit</h2>
-  <p>Paste this into Claude Code, replacing the URL with your own LinkedIn profile.</p>
+  <p>Paste this into Claude Code. Swap in your LinkedIn URL:</p>
   <div class="code-block" data-copy="run"><button class="copy" data-target="run">Copy</button>Audit my LinkedIn profile using the framework at https://raw.githubusercontent.com/pblvrt/linkedin-evaluator/main/audit.md — my profile is https://linkedin.com/in/YOUR-HANDLE</div>
-  <p class="step-hint">Claude fetches the framework, drives your already-logged-in Chrome to read the profile, and writes the audit. Takes ~2 minutes.</p>
+  <p class="step-hint">Claude opens your Chrome, scrolls your profile like a real person would, and writes the audit while you watch. ~2 minutes.</p>
 
-  <h2><span class="num">03</span>What you get</h2>
-  <p>A 0–100 overall score, a verdict, and a weighted scorecard:</p>
+  <h2><span class="num">03</span>What you walk away with</h2>
+  <p>A 0–100 score, a one-liner verdict, and a breakdown of the 7 things buyers judge you on before they decide whether to book a call:</p>
   <div class="pillars">
-    <div class="pillar"><p class="name">Headline</p><p class="what">Names the buyer, the outcome, and a credibility marker.</p></div>
-    <div class="pillar"><p class="name">Visuals</p><p class="what">Photo + banner. Default LinkedIn blue is throwing money away.</p></div>
-    <div class="pillar"><p class="name">About</p><p class="what">Hook in the first two lines, proof, who you help, a real CTA.</p></div>
-    <div class="pillar"><p class="name">Featured</p><p class="what">Case study + lead magnet + best post. The closer.</p></div>
-    <div class="pillar"><p class="name">Experience</p><p class="what">Outcomes with numbers, not duties from a job description.</p></div>
-    <div class="pillar"><p class="name">Skills</p><p class="what">Top 3 align with the headline. Endorsed by the right people.</p></div>
-    <div class="pillar"><p class="name">Content</p><p class="what">Cadence, themes, format mix, original substance.</p></div>
-    <div class="pillar"><p class="name">+ Rewrites</p><p class="what">3 headlines, a new About opening, banner copy, one post idea.</p></div>
+    <div class="pillar"><p class="name">Headline</p><p class="what">Names the buyer, the outcome, and why you. Most people botch this.</p></div>
+    <div class="pillar"><p class="name">Visuals</p><p class="what">Photo + banner. Default LinkedIn blue is leaving money on the floor.</p></div>
+    <div class="pillar"><p class="name">About</p><p class="what">Hook in the first two lines, proof, who you help, a real CTA. Not a CV.</p></div>
+    <div class="pillar"><p class="name">Featured</p><p class="what">Case study + lead magnet + best post. The thing that closes warm visitors.</p></div>
+    <div class="pillar"><p class="name">Experience</p><p class="what">Outcomes with numbers, not job duties from a JD nobody asked for.</p></div>
+    <div class="pillar"><p class="name">Skills</p><p class="what">Top 3 lined up with the headline. Endorsed by people in your buyer's world.</p></div>
+    <div class="pillar"><p class="name">Content</p><p class="what">Posting cadence, themes, original substance. No ghost towns.</p></div>
+    <div class="pillar"><p class="name">+ Rewrites</p><p class="what">3 new headlines, a fresh About opening, banner copy, one post idea for this week.</p></div>
   </div>
   <p style="margin-top: 22px;">Then it asks which buyer you actually want to attract and regenerates the rewrites for that buyer specifically.</p>
 
-  <h2><span class="num">04</span>Why this works</h2>
-  <p>Most LinkedIn audits tell you to <em>be authentic</em> and <em>tell your story.</em> This one quotes your copy and tells you what to delete. The rubric is built around what makes a service-business profile generate inbound — not what makes HR happy.</p>
+  <h2><span class="num">04</span>Why this isn't another "be authentic" audit</h2>
+  <p>Most LinkedIn coaches tell you to <em>tell your story</em> and <em>be authentic.</em> Useless. This one reads your profile, quotes the lines that aren't working, and tells you exactly what to swap them for. Built around how service businesses actually generate inbound — not how recruiters scan resumes.</p>
 
   <details>
     <summary>How it works under the hood</summary>
-    <p>The audit framework is a single markdown file in the repo. When you paste the magic line, Claude Code fetches it, then uses the chrome-devtools MCP to drive your <em>local</em> Chrome — so it reads your profile from inside your already-logged-in session, never from a server. Your profile content stays in your Claude Code session. <a href="https://github.com/pblvrt/linkedin-evaluator" target="_blank" rel="noopener">Source on GitHub</a>.</p>
+    <p>It's a single set of instructions hosted on GitHub. When you paste the line above, Claude Code grabs the instructions, opens your already-logged-in Chrome, reads your profile, and writes the audit — all on your machine. Nothing's sent to a server. Your profile content never leaves your computer. <a href="https://github.com/pblvrt/linkedin-evaluator" target="_blank" rel="noopener">Source on GitHub</a>.</p>
   </details>
 
   <div class="footer">
-    <p>Built by <a href="https://linkedin.com/in/pablovoorvaart" target="_blank" rel="noopener">Pablo Voorvaart</a>. The same engine runs <a href="https://github.com/pblvrt" target="_blank" rel="noopener">Scout</a> — automated LinkedIn lead gen for high-ticket service businesses. <span class="pill">v1</span></p>
+    <p>Built by <a href="https://linkedin.com/in/pablo-v-b64b92169" target="_blank" rel="noopener">Pablo</a>. Same engine runs <a href="https://github.com/pblvrt" target="_blank" rel="noopener">Scout</a> — your AI SDR that finds + DMs your ICP on autopilot. <span class="pill">v1</span></p>
   </div>
 </div>
 
