@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free LinkedIn Profile Audit — runs in your own Claude Code</title>
+<meta name="description" content="A senior-positioning-consultant-grade audit of your LinkedIn profile, scored across the 7 pillars that decide whether visitors become clients. Runs in Claude Code, no signup.">
+<meta property="og:title" content="The LinkedIn audit that tells you what to delete">
+<meta property="og:description" content="Score your profile across the 7 pillars that turn visitors into clients. Concrete rewrites, no fluff. Runs in Claude Code.">
+<style>
+  :root {
+    --ink: #0b0d12;
+    --paper: #fafaf7;
+    --line: #1a1d24;
+    --accent: #0a66c2;
+    --accent-ink: #fff;
+    --muted: #6b7280;
+    --code-bg: #0b0d12;
+    --code-ink: #f4f3ee;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 40px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px;
+  }
+  h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 44px; line-height: 1.05;
+    margin: 0 0 16px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { font-size: 18px; color: #2a2d35; max-width: 56ch; margin: 0; }
+  h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500; font-size: 22px;
+    margin: 48px 0 14px; letter-spacing: -0.005em;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  h2 .num {
+    display: inline-block;
+    font-family: ui-sans-serif, system-ui;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: rgba(10, 102, 194, 0.08);
+    border-radius: 999px;
+    padding: 3px 10px;
+    transform: translateY(-2px);
+  }
+  p { margin: 0 0 14px; }
+  a { color: var(--ink); }
+  .code-block {
+    position: relative;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 12px;
+    padding: 18px 56px 18px 18px;
+    margin: 14px 0 6px;
+    font: 13.5px/1.55 ui-monospace, "SF Mono", Menlo, monospace;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid #1a1d24;
+  }
+  .copy {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,0.06);
+    color: var(--code-ink);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font: 600 11px/1 ui-sans-serif, system-ui;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .copy:hover { background: rgba(255,255,255,0.12); }
+  .copy.copied { background: #057642; border-color: #057642; }
+  .step-hint { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin: 18px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .pillar {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .pillar:nth-child(odd) { padding-right: 18px; border-right: 1px solid var(--line); }
+  .pillar:nth-child(even) { padding-left: 18px; }
+  .pillar .name {
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-size: 17px;
+    margin: 0 0 4px;
+  }
+  .pillar .what { color: var(--muted); font-size: 13.5px; margin: 0; }
+  .footer {
+    border-top: 1px solid var(--line);
+    margin-top: 64px; padding-top: 24px;
+    color: var(--muted); font-size: 14px;
+  }
+  .pill {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #fff; border: 1px solid var(--line);
+    padding: 4px 10px; border-radius: 999px; color: var(--ink);
+  }
+  details { margin-top: 14px; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+  details p { font-size: 14px; color: #2a2d35; margin-top: 8px; }
+  @media (max-width: 540px) {
+    h1 { font-size: 34px; }
+    .pillars { grid-template-columns: 1fr; }
+    .pillar:nth-child(odd) { padding-right: 0; border-right: 0; }
+    .pillar:nth-child(even) { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Free · No signup · Runs in Claude Code</p>
+    <h1>The LinkedIn audit that <em>tells you what to delete.</em></h1>
+    <p class="lede">A senior-positioning-consultant-grade audit, scored across the 7 things that decide whether profile visitors become clients. Real rewrites, not "be authentic."</p>
+  </header>
+
+  <h2><span class="num">01</span>One-time setup</h2>
+  <p>Install the <code>chrome-devtools</code> MCP in Claude Code. Then make sure Chrome is open and you're logged into LinkedIn.</p>
+  <div class="code-block" data-copy="install"><button class="copy" data-target="install">Copy</button>claude mcp add chrome-devtools npx chrome-devtools-mcp@latest</div>
+  <p class="step-hint">Don't have Claude Code? Install it from <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a>.</p>
+
+  <h2><span class="num">02</span>Run the audit</h2>
+  <p>Paste this into Claude Code, replacing the URL with your own LinkedIn profile.</p>
+  <div class="code-block" data-copy="run"><button class="copy" data-target="run">Copy</button>Audit my LinkedIn profile using the framework at https://raw.githubusercontent.com/pblvrt/linkedin-evaluator/main/audit.md — my profile is https://linkedin.com/in/YOUR-HANDLE</div>
+  <p class="step-hint">Claude fetches the framework, drives your already-logged-in Chrome to read the profile, and writes the audit. Takes ~2 minutes.</p>
+
+  <h2><span class="num">03</span>What you get</h2>
+  <p>A 0–100 overall score, a verdict, and a weighted scorecard:</p>
+  <div class="pillars">
+    <div class="pillar"><p class="name">Headline</p><p class="what">Names the buyer, the outcome, and a credibility marker.</p></div>
+    <div class="pillar"><p class="name">Visuals</p><p class="what">Photo + banner. Default LinkedIn blue is throwing money away.</p></div>
+    <div class="pillar"><p class="name">About</p><p class="what">Hook in the first two lines, proof, who you help, a real CTA.</p></div>
+    <div class="pillar"><p class="name">Featured</p><p class="what">Case study + lead magnet + best post. The closer.</p></div>
+    <div class="pillar"><p class="name">Experience</p><p class="what">Outcomes with numbers, not duties from a job description.</p></div>
+    <div class="pillar"><p class="name">Skills</p><p class="what">Top 3 align with the headline. Endorsed by the right people.</p></div>
+    <div class="pillar"><p class="name">Content</p><p class="what">Cadence, themes, format mix, original substance.</p></div>
+    <div class="pillar"><p class="name">+ Rewrites</p><p class="what">3 headlines, a new About opening, banner copy, one post idea.</p></div>
+  </div>
+  <p style="margin-top: 22px;">Then it asks which buyer you actually want to attract and regenerates the rewrites for that buyer specifically.</p>
+
+  <h2><span class="num">04</span>Why this works</h2>
+  <p>Most LinkedIn audits tell you to <em>be authentic</em> and <em>tell your story.</em> This one quotes your copy and tells you what to delete. The rubric is built around what makes a service-business profile generate inbound — not what makes HR happy.</p>
+
+  <details>
+    <summary>How it works under the hood</summary>
+    <p>The audit framework is a single markdown file in the repo. When you paste the magic line, Claude Code fetches it, then uses the chrome-devtools MCP to drive your <em>local</em> Chrome — so it reads your profile from inside your already-logged-in session, never from a server. Your profile content stays in your Claude Code session. <a href="https://github.com/pblvrt/linkedin-evaluator" target="_blank" rel="noopener">Source on GitHub</a>.</p>
+  </details>
+
+  <div class="footer">
+    <p>Built by <a href="https://linkedin.com/in/pablovoorvaart" target="_blank" rel="noopener">Pablo Voorvaart</a>. The same engine runs <a href="https://github.com/pblvrt" target="_blank" rel="noopener">Scout</a> — automated LinkedIn lead gen for high-ticket service businesses. <span class="pill">v1</span></p>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const block = btn.parentElement;
+    const text = block.childNodes[block.childNodes.length - 1].textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    const original = btn.textContent;
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+  });
+});
+</script>
+</body>
+</html>
