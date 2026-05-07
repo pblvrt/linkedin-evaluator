@@ -3,20 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Turn your LinkedIn into a sales machine.</title>
-<meta name="description" content="A free audit that turns your LinkedIn profile into a real sales asset. Quotes your copy, scores it, rewrites what's not pulling weight. Built for sales people, not personal-brand coaches.">
-<meta property="og:title" content="Turn your LinkedIn into a sales machine.">
-<meta property="og:description" content="Free audit + rewrites that turn your profile into a real sales asset. Built for sales people, not personal-brand coaches.">
+<title>The 3 lines on your LinkedIn that are killing your reply rate</title>
+<meta name="description" content="A free teardown of how 90% of LinkedIn profiles leak deals — with rewrites, the 7-point scorecard sales reps can self-grade against, and a free audit you can run on your own profile.">
+<meta property="og:title" content="The 3 lines on your LinkedIn that are killing your reply rate">
+<meta property="og:description" content="Free teardown + scorecard + rewrites. Built for sales reps, not personal-brand coaches.">
 <style>
   :root {
     --ink: #0b0d12;
     --paper: #fafaf7;
     --line: #1a1d24;
+    --soft-line: #d6d3c8;
     --accent: #0a66c2;
     --accent-ink: #fff;
     --muted: #6b7280;
     --code-bg: #0b0d12;
     --code-ink: #f4f3ee;
+    --bad: #b32d2e;
+    --good: #057642;
+    --highlight: #fff7c2;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -24,42 +28,75 @@
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     background: var(--paper);
     color: var(--ink);
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
-  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 40px; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 56px 24px 96px; }
+  header { padding-bottom: 36px; margin-bottom: 48px; border-bottom: 1px solid var(--line); }
   .eyebrow {
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted); margin: 0 0 12px;
+    color: var(--muted); margin: 0 0 14px;
   }
   h1 {
     font-family: "Times New Roman", Georgia, serif;
     font-weight: 500;
-    font-size: 44px; line-height: 1.05;
-    margin: 0 0 16px; letter-spacing: -0.01em;
+    font-size: 48px; line-height: 1.04;
+    margin: 0 0 18px; letter-spacing: -0.012em;
   }
   h1 em { font-style: italic; color: var(--accent); }
-  .lede { font-size: 18px; color: #2a2d35; max-width: 56ch; margin: 0; }
+  h1 mark { background: var(--highlight); padding: 0 4px; border-radius: 2px; }
+  .lede { font-size: 18px; color: #2a2d35; max-width: 58ch; margin: 0 0 22px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+  .btn {
+    display: inline-block;
+    font-weight: 600; font-size: 14.5px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 11px 20px;
+    transition: transform 0.06s ease;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-secondary { color: var(--muted); }
   h2 {
     font-family: "Times New Roman", Georgia, serif;
-    font-weight: 500; font-size: 22px;
-    margin: 48px 0 14px; letter-spacing: -0.005em;
-    display: flex; align-items: baseline; gap: 12px;
+    font-weight: 500; font-size: 28px;
+    margin: 56px 0 16px; letter-spacing: -0.008em;
+    line-height: 1.2;
   }
-  h2 .num {
-    display: inline-block;
-    font-family: ui-sans-serif, system-ui;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    background: rgba(10, 102, 194, 0.08);
-    border-radius: 999px;
-    padding: 3px 10px;
-    transform: translateY(-2px);
+  h2 em { font-style: italic; color: var(--accent); }
+  h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 21px;
+    margin: 36px 0 10px;
+    letter-spacing: -0.005em;
   }
-  p { margin: 0 0 14px; }
+  p { margin: 0 0 16px; }
   a { color: var(--ink); }
+  .teardown {
+    border-left: 3px solid var(--soft-line);
+    padding: 4px 0 4px 22px;
+    margin: 18px 0 26px;
+  }
+  .teardown.bad { border-left-color: var(--bad); }
+  .teardown.good { border-left-color: var(--good); }
+  .teardown .label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 6px;
+  }
+  .teardown.bad .label { color: var(--bad); }
+  .teardown.good .label { color: var(--good); }
+  .teardown blockquote {
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    margin: 0; color: #1f2128;
+  }
+  .teardown.bad blockquote { text-decoration: line-through; text-decoration-color: rgba(179, 45, 46, 0.3); text-decoration-thickness: 1px; }
+  .teardown .why { font-size: 14.5px; color: #2a2d35; margin: 8px 0 0; }
   .code-block {
     position: relative;
     background: var(--code-bg);
@@ -69,7 +106,8 @@
     margin: 14px 0 6px;
     font: 13.5px/1.55 ui-monospace, "SF Mono", Menlo, monospace;
     overflow-x: auto;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-word;
     border: 1px solid #1a1d24;
   }
   .copy {
@@ -86,27 +124,99 @@
   }
   .copy:hover { background: rgba(255,255,255,0.12); }
   .copy.copied { background: #057642; border-color: #057642; }
-  .step-hint { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
-  .pillars {
+  .step-hint { color: var(--muted); font-size: 14px; margin: 4px 0 18px; }
+  .scorecard {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    margin: 22px 0 0;
+    overflow: hidden;
+  }
+  .scorecard-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    margin: 18px 0 0;
-    border-top: 1px solid var(--line);
+    grid-template-columns: 28px 1fr 64px;
+    gap: 14px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--soft-line);
+    align-items: baseline;
   }
-  .pillar {
-    border-bottom: 1px solid var(--line);
-    padding: 14px 0;
+  .scorecard-row:last-child { border-bottom: none; }
+  .scorecard-row .num {
+    font: 600 11px/1 ui-sans-serif, system-ui;
+    color: var(--muted); letter-spacing: 0.06em;
   }
-  .pillar:nth-child(odd) { padding-right: 18px; border-right: 1px solid var(--line); }
-  .pillar:nth-child(even) { padding-left: 18px; }
-  .pillar .name {
+  .scorecard-row .name {
     font-family: "Times New Roman", Georgia, serif;
-    font-style: italic;
     font-size: 17px;
-    margin: 0 0 4px;
   }
-  .pillar .what { color: var(--muted); font-size: 13.5px; margin: 0; }
+  .scorecard-row .what {
+    grid-column: 2 / 3;
+    color: var(--muted); font-size: 13.5px;
+    margin: 4px 0 0;
+  }
+  .scorecard-row .weight {
+    text-align: right;
+    color: var(--muted); font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .step-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 14px 0;
+  }
+  .step-card .num {
+    display: inline-block;
+    font: 600 11px/1 ui-sans-serif, system-ui;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(10, 102, 194, 0.08);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .step-card h3 { margin: 0 0 6px; font-style: normal; font-size: 17px; font-family: ui-sans-serif, system-ui; font-weight: 600; }
+  .step-card p { margin: 0 0 10px; font-size: 14.5px; color: #2a2d35; }
+  .bridge {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 56px 0 0;
+  }
+  .bridge h2 { color: var(--paper); margin-top: 0; }
+  .bridge h2 em { color: #a3c4ee; }
+  .bridge p { color: #d4d3cd; margin-bottom: 14px; }
+  .bridge a.btn { background: var(--paper); color: var(--ink); margin-top: 8px; }
+  .capture {
+    border: 1px dashed var(--soft-line);
+    border-radius: 14px;
+    padding: 24px;
+    margin: 32px 0 0;
+    background: rgba(10, 102, 194, 0.03);
+  }
+  .capture h3 { margin: 0 0 6px; font-style: normal; font-family: ui-sans-serif, system-ui; font-weight: 600; font-size: 17px; }
+  .capture p { font-size: 14.5px; color: #2a2d35; margin: 0 0 14px; }
+  .capture form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .capture input[type="email"] {
+    flex: 1; min-width: 220px;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14.5px;
+    background: #fff;
+    font-family: inherit;
+  }
+  .capture button {
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: none;
+    background: var(--ink);
+    color: var(--paper);
+    font: 600 14.5px ui-sans-serif, system-ui;
+    cursor: pointer;
+  }
   .footer {
     border-top: 1px solid var(--line);
     margin-top: 64px; padding-top: 24px;
@@ -121,52 +231,117 @@
   details { margin-top: 14px; }
   details summary { cursor: pointer; color: var(--muted); font-size: 14px; }
   details p { font-size: 14px; color: #2a2d35; margin-top: 8px; }
+  .anchor-spacer { height: 24px; }
   @media (max-width: 540px) {
-    h1 { font-size: 34px; }
-    .pillars { grid-template-columns: 1fr; }
-    .pillar:nth-child(odd) { padding-right: 0; border-right: 0; }
-    .pillar:nth-child(even) { padding-left: 0; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 24px; }
+    .wrap { padding: 40px 20px 80px; }
+    .scorecard-row { grid-template-columns: 24px 1fr 56px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
+
   <header>
-    <p class="eyebrow">Free · A sales tool, not a personal-brand audit</p>
-    <h1>Turn your LinkedIn into a <em>sales machine.</em></h1>
-    <p class="lede">Your profile is a sales page that 200+ buyers see every month. Most look like CVs. This audit scores yours across the 7 levers that turn visitors into replies, then rewrites the parts that aren't pulling weight — so the next prospect who lands on it actually books the call.</p>
+    <p class="eyebrow">Free teardown · For sales reps, not personal-brand coaches</p>
+    <h1>There are <em>3 lines</em> on your LinkedIn that are <mark>killing your reply rate</mark>.</h1>
+    <p class="lede">200+ buyers see your profile every month. Most of them never DM you back — not because your offer's bad, but because the profile reads like a CV. Below: the 3 anti-patterns that show up in 90% of sales-rep profiles, the rewrites that fix them, and a free audit you can run on yours in 2 minutes.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#audit">Run the audit on my profile →</a>
+      <a class="btn btn-secondary" href="#teardown">Or read the teardown first</a>
+    </div>
   </header>
 
-  <h2><span class="num">01</span>Set up Claude Code (one-time)</h2>
-  <p>Claude Code is the AI tool that can use your computer for you. You'll use it for way more than this audit — but if you don't have it yet, grab it here: <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a>. Takes 2 minutes.</p>
-  <p>Then run this command once to let it talk to your browser:</p>
-  <div class="code-block" data-copy="install"><button class="copy" data-target="install">Copy</button>claude mcp add chrome-devtools npx chrome-devtools-mcp@latest</div>
-  <p class="step-hint">Open Chrome, log into LinkedIn like you normally do. That's the setup. You'll never do this part again.</p>
+  <h2 id="teardown">The 3 lines killing <em>most</em> sales-rep profiles</h2>
 
-  <h2><span class="num">02</span>Run the audit</h2>
-  <p>Paste this into Claude Code. Swap in your LinkedIn URL:</p>
-  <div class="code-block" data-copy="run"><button class="copy" data-target="run">Copy</button>Audit my LinkedIn profile using the framework at https://raw.githubusercontent.com/pblvrt/linkedin-evaluator/main/audit.md — my profile is https://linkedin.com/in/YOUR-HANDLE</div>
-  <p class="step-hint">Claude opens your Chrome, scrolls your profile like a real person would, and writes the audit while you watch. ~2 minutes.</p>
-
-  <h2><span class="num">03</span>What you walk away with</h2>
-  <p>A 0–100 score on how well your profile sells for you, plus a breakdown of the 7 levers that turn a visitor into a reply:</p>
-  <div class="pillars">
-    <div class="pillar"><p class="name">Headline</p><p class="what">The first thing every prospect sees. Names the buyer, the outcome, why you.</p></div>
-    <div class="pillar"><p class="name">Visuals</p><p class="what">Photo + banner. Your storefront. Default LinkedIn blue costs you replies.</p></div>
-    <div class="pillar"><p class="name">About</p><p class="what">Mini sales page above the "see more" fold. Hook, proof, CTA — not a CV.</p></div>
-    <div class="pillar"><p class="name">Featured</p><p class="what">Case study + lead magnet + best post. Where warm visitors actually convert.</p></div>
-    <div class="pillar"><p class="name">Experience</p><p class="what">Outcomes with numbers. Builds buyer-credibility, not recruiter-credibility.</p></div>
-    <div class="pillar"><p class="name">Skills</p><p class="what">Top 3 line up with the headline. Endorsed by people in your buyer's world.</p></div>
-    <div class="pillar"><p class="name">Content</p><p class="what">How prospects find you. Cadence, themes, original substance. No ghost towns.</p></div>
-    <div class="pillar"><p class="name">+ Rewrites</p><p class="what">3 new headlines, a fresh About opening, banner copy, one post idea for this week.</p></div>
+  <h3>1. The job-title headline</h3>
+  <p>Your headline is the <em>only</em> thing every prospect sees — connection requests, comments, search results, mutual-connection cards. Most reps fill it with a job title and a company name and call it done. Buyers can't tell what you do, who you help, or why they should care.</p>
+  <div class="teardown bad">
+    <p class="label">What 9 out of 10 sales-rep headlines look like</p>
+    <blockquote>Senior Account Executive at Acme</blockquote>
+    <p class="why">Tells me your seat number. Doesn't tell me anything I'd care about as a buyer. Reply rate ceiling: low.</p>
   </div>
-  <p style="margin-top: 22px;">Then it asks which buyer you actually want to attract and regenerates the rewrites for that buyer specifically.</p>
+  <div class="teardown good">
+    <p class="label">What converts instead</p>
+    <blockquote>Helping Series A SaaS founders book 10+ qualified demos a month — without hiring SDRs | Acme</blockquote>
+    <p class="why">Names the buyer. Names the outcome. Quantifies. Drops a credibility marker. Now a buyer reading this knows in 4 seconds whether you're worth a 30-second click.</p>
+  </div>
+  <p>The formula: <code>[role/expertise] helping [specific buyer] achieve [specific outcome] | [credibility marker]</code>.</p>
 
-  <h2><span class="num">04</span>Built for sales, not personal branding</h2>
-  <p>Most LinkedIn coaches optimize for likes and follower count. Useless if you sell. This audit optimizes for the part of the funnel they ignore: the prospect who lands on your profile after a cold DM, a comment, or a referral — and decides in 8 seconds whether to keep reading or close the tab. Every line of feedback maps back to one thing: <em>does this sell, or does this just look nice?</em></p>
+  <h3>2. The CV-style About</h3>
+  <p>The first 2 lines of your About — the part that shows above the "see more" fold — is where 80% of profile visitors decide whether to keep reading. Most reps waste it on autobiography. *"I'm a results-driven sales professional passionate about building meaningful relationships..."* Nobody reading that ever booked a call.</p>
+  <div class="teardown bad">
+    <p class="label">The CV opener</p>
+    <blockquote>I'm a results-driven sales professional with 7+ years of experience driving revenue growth at high-velocity SaaS companies, passionate about building meaningful relationships with stakeholders.</blockquote>
+    <p class="why">Reads like an HR field. Zero specificity, zero proof, zero hook. The reader's already scrolling.</p>
+  </div>
+  <div class="teardown good">
+    <p class="label">The sales-page opener</p>
+    <blockquote>Most sales reps are great at follow-up and bad at first impressions. I help Series A founders fix the part of their funnel where 8 out of 10 buyers silently bounce — the LinkedIn profile they hit before the demo. Last quarter: 14 founders, 3 hires, $2.1M new pipeline.</blockquote>
+    <p class="why">Hook → specific problem → who you help → proof. Above the fold. Now they're reading line 3.</p>
+  </div>
+
+  <h3>3. The empty Featured section</h3>
+  <p>The Featured section is the warmest-converting real estate on a LinkedIn profile. It sits between the About and the Experience, exactly where a curious buyer scrolls. <em>Most reps leave it empty.</em> That's a free conversion mechanism going to waste.</p>
+  <p>What it should contain — pick 3 of these, in order of conversion power:</p>
+  <ul style="margin: 8px 0 18px; padding-left: 20px; color: #2a2d35;">
+    <li><strong>A 60-second Loom or video</strong> showing your offer in motion (closes warmest).</li>
+    <li><strong>A one-page case study</strong> — name, problem, outcome, with a number.</li>
+    <li><strong>A lead magnet or template</strong> — gated by email if you want to capture; ungated if you want shares.</li>
+    <li><strong>A best-performing post</strong> that demonstrates your point of view.</li>
+  </ul>
+
+  <h2 id="scorecard">The full scorecard the audit runs against</h2>
+  <p>Every section gets graded 0–10. Weighted by what actually moves reply rate:</p>
+  <div class="scorecard">
+    <div class="scorecard-row"><span class="num">01</span><div><span class="name">Headline</span><p class="what">First impression. Names the buyer + outcome + credibility.</p></div><span class="weight">20%</span></div>
+    <div class="scorecard-row"><span class="num">02</span><div><span class="name">Visuals</span><p class="what">Photo + banner. Banner is your billboard — default blue costs you replies.</p></div><span class="weight">12%</span></div>
+    <div class="scorecard-row"><span class="num">03</span><div><span class="name">About</span><p class="what">Hook above the fold. Proof. Buyer + mechanism. A real CTA.</p></div><span class="weight">18%</span></div>
+    <div class="scorecard-row"><span class="num">04</span><div><span class="name">Featured</span><p class="what">Where warm visitors actually convert. Empty = 0/10.</p></div><span class="weight">12%</span></div>
+    <div class="scorecard-row"><span class="num">05</span><div><span class="name">Experience</span><p class="what">Outcomes with numbers. Builds buyer-credibility, not recruiter-credibility.</p></div><span class="weight">12%</span></div>
+    <div class="scorecard-row"><span class="num">06</span><div><span class="name">Skills</span><p class="what">Top 3 line up with the headline. Endorsed by people in the buyer's world.</p></div><span class="weight">8%</span></div>
+    <div class="scorecard-row"><span class="num">07</span><div><span class="name">Content</span><p class="what">Posting cadence + themes + format mix. How prospects find you.</p></div><span class="weight">18%</span></div>
+  </div>
+
+  <h2 id="audit">Run it on your <em>own</em> profile — free</h2>
+  <p>The audit doesn't just score — it <strong>quotes the lines on your profile that aren't working</strong> and rewrites them. Three new headlines. A fresh About opening. A Featured plan. Banner copy. One post idea for the week. Then it asks which buyer you actually want to attract and regenerates the rewrites for that buyer.</p>
+  <p>Two steps. Both free. Your profile content never leaves your laptop.</p>
+
+  <div class="step-card">
+    <span class="num">Step 01 — One time</span>
+    <h3>Set up Claude Code (the AI tool that uses your computer for you)</h3>
+    <p>Don't have it? Grab it here: <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a> — takes 2 minutes. Then run this once to let it talk to your browser:</p>
+    <div class="code-block" data-copy="install"><button class="copy" data-target="install">Copy</button>claude mcp add chrome-devtools npx chrome-devtools-mcp@latest</div>
+    <p class="step-hint">Open Chrome, log into LinkedIn like normal. You're set.</p>
+  </div>
+
+  <div class="step-card">
+    <span class="num">Step 02 — Whenever you want an audit</span>
+    <h3>Paste this into Claude Code with your profile URL</h3>
+    <div class="code-block" data-copy="run"><button class="copy" data-target="run">Copy</button>Audit my LinkedIn profile using the framework at https://raw.githubusercontent.com/pblvrt/linkedin-evaluator/main/audit.md — my profile is https://linkedin.com/in/YOUR-HANDLE</div>
+    <p class="step-hint">Claude opens your Chrome, scrolls your profile, and writes the audit while you watch. ~2 minutes.</p>
+  </div>
+
+  <div class="capture" id="cheatsheet">
+    <h3>Want the rewrites cheat sheet by email?</h3>
+    <p>Drop your email and I'll send: (a) the headline + About rewrite templates as a PDF, (b) v2 of the audit when it ships, and (c) one short note a week with a real before/after rewrite of a sales-rep profile. No spam, unsubscribe in one click.</p>
+    <form action="https://formspree.io/f/REPLACE_ME" method="POST">
+      <input type="email" name="email" placeholder="you@company.com" required>
+      <button type="submit">Send me the cheat sheet</button>
+    </form>
+    <p style="font-size: 12px; color: var(--muted); margin: 12px 0 0;">⚙︎ Wire this form to Formspree / Tally / ConvertKit / your CRM — replace the <code>action</code> URL.</p>
+  </div>
+
+  <div class="bridge">
+    <h2>Once the profile converts, you still need <em>traffic</em> to it.</h2>
+    <p>The audit fixes how visitors react. It doesn't fix where the visitors come from. If you're a founder or solo seller doing your own pipeline, the bottleneck is usually finding + DMing your ICP — not closing them.</p>
+    <p>That's what I'm building <strong>Scout</strong> for. An AI agent that finds the founders, coaches, and consultants who actually need your service, and starts the conversation for you — without sounding like a spam bot.</p>
+    <p><a class="btn btn-primary" href="https://github.com/pblvrt" target="_blank" rel="noopener">Get early access →</a></p>
+  </div>
 
   <details>
-    <summary>How it works under the hood</summary>
+    <summary>How the audit works under the hood</summary>
     <p>It's a single set of instructions hosted on GitHub. When you paste the line above, Claude Code grabs the instructions, opens your already-logged-in Chrome, reads your profile, and writes the audit — all on your machine. Nothing's sent to a server. Your profile content never leaves your computer. <a href="https://github.com/pblvrt/linkedin-evaluator" target="_blank" rel="noopener">Source on GitHub</a>.</p>
   </details>
 
