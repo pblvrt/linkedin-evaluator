@@ -1,4 +1,6 @@
 (async function() {
+  console.log('[lna] bookmarklet started');
+  try {
   if (!location.hostname.endsWith('linkedin.com') || !location.pathname.startsWith('/in/')) {
     alert('⚠️ Open a LinkedIn profile page first (linkedin.com/in/...) and click the bookmark again.');
     return;
@@ -194,4 +196,8 @@ ${JSON.stringify(profile, null, 2)}
   }
 
   setTimeout(() => document.getElementById('__lna_toast')?.remove(), 5000);
+  } catch (err) {
+    console.error('[lna] error', err);
+    alert('Audit bookmarklet failed: ' + (err && err.message ? err.message : err) + '\n\nOpen DevTools console for full trace.');
+  }
 })();
