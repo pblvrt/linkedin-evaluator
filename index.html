@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free LinkedIn Profile Audit — runs in your own Claude</title>
+<meta name="description" content="A senior-positioning-consultant-grade audit of your LinkedIn profile. Drag the bookmark, click on your profile, get the audit in Claude.">
+<style>
+  :root {
+    --ink: #0b0d12;
+    --paper: #fafaf7;
+    --line: #1a1d24;
+    --accent: #0a66c2;
+    --accent-ink: #fff;
+    --muted: #6b7280;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 40px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px;
+  }
+  h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 44px; line-height: 1.05;
+    margin: 0 0 16px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { font-size: 18px; color: #2a2d35; max-width: 56ch; margin: 0; }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 24px; margin: 48px 0 12px; letter-spacing: -0.005em; }
+  p { margin: 0 0 14px; }
+  ol { padding-left: 22px; margin: 8px 0 0; }
+  ol li { margin-bottom: 12px; }
+  code { font: 13px/1.5 ui-monospace, "SF Mono", Menlo, monospace; background: #efeee8; padding: 2px 6px; border-radius: 4px; }
+  .bookmark-zone {
+    border: 1.5px dashed var(--line);
+    border-radius: 14px;
+    padding: 32px;
+    margin: 28px 0 8px;
+    text-align: center;
+    background: #fff;
+  }
+  .bookmark {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-ink) !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    border: none;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 0 #074d92, 0 8px 24px rgba(10, 102, 194, 0.18);
+    transition: transform 0.08s ease;
+  }
+  .bookmark:hover { transform: translateY(-1px); }
+  .bookmark:active { cursor: grabbing; transform: translateY(2px); box-shadow: 0 2px 0 #074d92; }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 16px; margin-bottom: 0; }
+  .steps li strong { font-weight: 600; }
+  .footer {
+    border-top: 1px solid var(--line);
+    margin-top: 64px; padding-top: 24px;
+    color: var(--muted); font-size: 14px;
+  }
+  .footer a { color: var(--ink); }
+  .pill {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #fff; border: 1px solid var(--line);
+    padding: 4px 10px; border-radius: 999px; color: var(--ink);
+  }
+  details { margin-top: 12px; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+  details p, details ol { font-size: 14px; color: #2a2d35; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Free · No signup · No data leaves your browser</p>
+    <h1>The LinkedIn audit that <em>tells you what to delete.</em></h1>
+    <p class="lede">A senior-positioning-consultant-grade audit of your profile, scored across the 7 things that decide whether visitors become clients. Drag the bookmark, click on your profile, get the audit.</p>
+  </header>
+
+  <h2>1. Drag this to your bookmarks bar</h2>
+  <div class="bookmark-zone">
+    <a class="bookmark"
+       href="javascript:(function(){var s=document.createElement('script');s.src='https://pblvrt.github.io/linkedin-evaluator/scrape.js?'+Date.now();document.body.appendChild(s)})();"
+       onclick="event.preventDefault(); alert('Drag this button to your bookmarks bar — don’t click it here.');"
+       title="Drag me to your bookmarks bar">📊&nbsp;&nbsp;Audit my LinkedIn</a>
+    <p class="hint">If your bookmarks bar is hidden: <code>⌘⇧B</code> on Mac, <code>Ctrl+Shift+B</code> on Windows.</p>
+  </div>
+
+  <h2>2. Run it on your profile</h2>
+  <ol class="steps">
+    <li>Open your LinkedIn profile (<code>linkedin.com/in/your-handle</code>).</li>
+    <li>Click the <strong>📊 Audit my LinkedIn</strong> bookmark you just saved.</li>
+    <li>The script scrolls your profile, expands every section, and copies an audit prompt to your clipboard. Then it opens Claude in a new tab.</li>
+    <li>In Claude, hit <code>⌘V</code> then enter. Audit appears.</li>
+  </ol>
+
+  <h2>What you get</h2>
+  <p>A 0–100 overall score plus a weighted scorecard across the seven pillars: <strong>Headline · Visuals · About · Featured · Experience · Skills · Content</strong>. Three headline rewrites built on a real positioning formula. A new About opening. A Featured-section plan. A banner concept. One post idea for this week, grounded in your actual experience. Then it asks which buyer you want to attract and regenerates the rewrites for that buyer specifically.</p>
+
+  <h2>Why this works</h2>
+  <p>Most audits tell you to <em>be authentic</em> and <em>tell your story</em>. This one quotes your actual copy and tells you what to delete. The rubric is built around what makes a service-business profile generate inbound — not what makes HR happy.</p>
+
+  <details>
+    <summary>How it works under the hood (for the curious)</summary>
+    <ol>
+      <li>The bookmarklet is a tiny snippet that loads <code>scrape.js</code> from this site.</li>
+      <li><code>scrape.js</code> runs inside <em>your</em> LinkedIn tab — your already-logged-in session — and reads the rendered DOM. No server-side scraping, no LinkedIn ToS violation, no data sent anywhere.</li>
+      <li>It builds a JSON snapshot of your profile and copies an audit prompt (with the snapshot inline) to your clipboard.</li>
+      <li>Claude reads the prompt, fetches the audit framework from this repo, and produces the report in your own Claude session.</li>
+    </ol>
+    <p>Source: <a href="https://github.com/pblvrt/linkedin-evaluator" target="_blank">github.com/pblvrt/linkedin-evaluator</a> · MIT licensed · contributions welcome.</p>
+  </details>
+
+  <div class="footer">
+    <p>Built by <a href="https://linkedin.com/in/pablovoorvaart" target="_blank">Pablo Voorvaart</a>. The same engine runs <a href="https://github.com/pblvrt" target="_blank">Scout</a> — automated LinkedIn lead gen for high-ticket service businesses. <span class="pill">v1</span></p>
+  </div>
+</div>
+</body>
+</html>

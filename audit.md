@@ -6,19 +6,17 @@ The framework scores the seven things that decide whether a profile attracts hig
 
 ## Step 1 — Get the profile
 
-The user provided a LinkedIn profile URL alongside this prompt (e.g. `https://linkedin.com/in/their-handle`).
+The user pasted this prompt into Claude **with their profile data already inline as a JSON block** (captured by a bookmarklet running inside their own logged-in LinkedIn session). Use that data — do not try to fetch LinkedIn yourself; the public site blocks automated requests and you'll get a 999/404.
 
-**Use the user's local browser** (Cowork computer-use). The user is already logged into LinkedIn, so their session bypasses the bot wall.
+The JSON block contains:
+- `name`, `headline`, `location`
+- `photo` and `banner` — each with `present` boolean and a `note`. Use the note as written when scoring visuals; do not invent visual details.
+- `sections` — an object keyed by LinkedIn section heading (`About`, `Featured`, `Experience`, `Skills`, `Education`, `Recommendations`, `Activity`, etc.) with the rendered text of each.
+- `sectionsFoundOnProfile` — the list of section names actually present. **If a section is missing from this list, treat it as `not visible / empty` and score accordingly** (e.g. no Featured = 0/10).
 
-1. Open Chrome/Safari and navigate to the user's profile URL.
-2. Scroll the full page slowly so all lazy-loaded sections render: **About, Featured, Experience, Skills, Recommendations, Activity**. Wait for each to populate before scrolling further.
-3. For **Activity**, click "Show all" or navigate to `<their-url>/recent-activity/all/` and capture at least the last 10 posts with dates, post type, opening line, and engagement counts.
-4. For **Experience** and **Skills**, click "Show all" if the section is collapsed, so you read the full text — not just the truncated preview.
-5. Capture: name (full), headline, location, banner image (describe what's on it — photo, text, logos, or default LinkedIn background), profile photo (describe — headshot quality, lighting, expression, background), About text in full, Featured items (count + what each is), every Experience entry (title, company, dates, full description), top skills shown, recommendations (count + a few sample lines), recent activity.
+If the JSON block is **not** present (user pasted only a URL): tell them *"This audit needs the bookmarklet to capture your profile first — go to https://pblvrt.github.io/linkedin-evaluator, drag the bookmark to your bookmarks bar, click it on your LinkedIn profile, then paste the result into this chat."* Then stop.
 
-If computer-use is **not** available, fall back to: tell the user *"To run the audit I need to read your profile. Either: (a) enable Computer use in Claude Desktop settings so I can drive your browser, or (b) paste your headline, About section, current role description, and a list of your last 5 posts (with dates) into chat."*
-
-Do **not** invent content. If a section is empty, mark it `not visible` and lower that section's score — an empty Featured section is itself a finding.
+Do **not** invent content. Quote only what the JSON contains. If a section is empty or missing, mark it `not visible` in the scorecard and lower that section's score — an empty Featured section is itself a finding.
 
 ## Step 2 — Apply the rubric
 
