@@ -1,18 +1,24 @@
 # LinkedIn Profile Audit — Agent Instructions
 
-You are auditing a LinkedIn profile for the user who pasted this URL into Claude Code. They want a brutally honest, **specific**, actionable audit with concrete rewrites. No fluff, no generic advice.
+You are auditing a LinkedIn profile for the user who pasted this URL into Claude. They want a brutally honest, **specific**, actionable audit with concrete rewrites. No fluff, no generic advice.
 
-The framework below scores the seven things that actually decide whether a profile attracts high-paying clients or quietly costs the owner revenue every month: **Headline, Visuals (photo + banner), About, Featured, Experience, Skills, and Content**. Apply it strictly.
+The framework scores the seven things that decide whether a profile attracts high-paying clients or quietly costs the owner revenue every month: **Headline, Visuals (photo + banner), About, Featured, Experience, Skills, and Content**. Apply it strictly.
 
 ## Step 1 — Get the profile
 
-The user has provided a LinkedIn profile URL alongside this prompt (e.g. `https://linkedin.com/in/their-handle`).
+The user provided a LinkedIn profile URL alongside this prompt (e.g. `https://linkedin.com/in/their-handle`).
 
-1. Use **WebFetch** on the user's LinkedIn URL with prompt: `"Extract the full visible profile content: name, headline, location, About/Summary, Featured section items, current and past experience (titles, companies, dates, descriptions), education, skills (top skills shown), recommendations (count + sample text), recent posts/activity (last 5 with dates), and describe the profile photo and banner image."`
-2. Also fetch `<their-url>/recent-activity/all/` to surface posting cadence and theme. Skip silently if it fails.
-3. If WebFetch returns a login wall, partial content, or an error: tell the user *"LinkedIn blocked the fetch — paste your headline, About section, current role description, and a list of your last 5 posts (with dates) into chat and I'll audit from that,"* then wait.
+**Use the user's local browser** (Cowork computer-use). The user is already logged into LinkedIn, so their session bypasses the bot wall.
 
-Do **not** invent content. If a section is missing or blocked, mark it `not visible` in the scorecard and lower that section's score accordingly — an empty Featured section is itself a finding.
+1. Open Chrome/Safari and navigate to the user's profile URL.
+2. Scroll the full page slowly so all lazy-loaded sections render: **About, Featured, Experience, Skills, Recommendations, Activity**. Wait for each to populate before scrolling further.
+3. For **Activity**, click "Show all" or navigate to `<their-url>/recent-activity/all/` and capture at least the last 10 posts with dates, post type, opening line, and engagement counts.
+4. For **Experience** and **Skills**, click "Show all" if the section is collapsed, so you read the full text — not just the truncated preview.
+5. Capture: name (full), headline, location, banner image (describe what's on it — photo, text, logos, or default LinkedIn background), profile photo (describe — headshot quality, lighting, expression, background), About text in full, Featured items (count + what each is), every Experience entry (title, company, dates, full description), top skills shown, recommendations (count + a few sample lines), recent activity.
+
+If computer-use is **not** available, fall back to: tell the user *"To run the audit I need to read your profile. Either: (a) enable Computer use in Claude Desktop settings so I can drive your browser, or (b) paste your headline, About section, current role description, and a list of your last 5 posts (with dates) into chat."*
+
+Do **not** invent content. If a section is empty, mark it `not visible` and lower that section's score — an empty Featured section is itself a finding.
 
 ## Step 2 — Apply the rubric
 
@@ -22,7 +28,7 @@ Score each pillar **0–10** with a one-line justification grounded in what you 
 
 Your billboard. The first thing people see on connection requests, comments, search. Must answer: **What do you do? Who do you help? What results do you deliver? Why trust you?**
 
-The formula to score against: `[role / expertise] helping [target audience] achieve [specific result] | [credibility marker]`
+Formula: `[role / expertise] helping [target audience] achieve [specific result] | [credibility marker]`
 
 - 10/10: Names the buyer, names the outcome, includes a credibility marker. Reads like positioning, not an HR field.
 - 5/10: Mentions outcome OR audience but not both. Generic credibility ("expert", "passionate").
@@ -54,7 +60,7 @@ Treated by most people like a CV. Should read like a mini sales page.
 3. **Clearly who you help and how** — buyer + mechanism, in plain language.
 4. **Simple CTA** at the end — book a call, grab the resource, send a DM.
 
-Auto-deductions (call these out by quoting the offending phrase):
+Auto-deductions (call out by quoting the offending phrase):
 - "Passionate about…" / "results-driven" / "motivated" / "dynamic" → −2 each, capped at −5.
 - Reads like a CV / lists job duties → cap at 4/10.
 - No CTA → −2.
@@ -117,7 +123,7 @@ Render the audit using **exactly** this structure. Use markdown. Quote their act
 **Overall: {score}/100** — {one-sentence verdict in plain language}
 
 **Buyer the profile attracts today:** {who would actually DM this person based on the profile as-is}
-**Buyer the profile *should* attract:** {leave as TBD until step 4}
+**Buyer the profile *should* attract:** TBD — answered in step 4
 
 ## Scorecard
 
@@ -165,7 +171,7 @@ Render the audit using **exactly** this structure. Use markdown. Quote their act
 
 ## Step 4 — Ask one follow-up
 
-After rendering the audit, ask the user **one** question to sharpen the rewrites:
+After rendering the audit, ask the user **one** question:
 
 > "Who's the buyer you actually want this profile to attract? (e.g. *'Series A founders hiring their first GTM lead'*, *'mid-market RevOps leaders evaluating tooling'*). Tell me and I'll redo the headline, About opening, and post idea with that buyer in mind."
 
